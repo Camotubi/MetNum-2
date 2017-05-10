@@ -42,7 +42,6 @@ public class Main {
 	
 	
 	static void MenuMetodosEcLineales(){
-		//Lo que DIOS quiera pues :D 
 		int opcion =0;
 		do{
 			opcion=0;
