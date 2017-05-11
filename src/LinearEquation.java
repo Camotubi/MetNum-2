@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class Equation {
+public class LinearEquation {
 	private double freeTerm;
 	private ArrayList<Double> varCoef;
 	
 	
-	public Equation(ArrayList<Double> varCoef, double freeTerm)
+	public LinearEquation(ArrayList<Double> varCoef, double freeTerm)
 	{
 		this.setVarCoef(varCoef);
 		this.setFreeTerm(freeTerm);
@@ -31,5 +31,24 @@ public class Equation {
 		this.varCoef = varCoef;
 	}
 
-	
+	public LinearFunc solveForX(int x)
+	{
+		ArrayList<Double> solvedForXCoef = new ArrayList<Double>();
+		solvedForXCoef.add(freeTerm);
+		for(int i = 0; i< varCoef.size();i++)
+		{
+			if(i == x)
+			{
+				continue;
+			}
+			else
+			{
+				solvedForXCoef.add(-varCoef.get(i));
+			}
+		}
+		return new  LinearFunc(solvedForXCoef,"x"+x);
+	}
+
+
+
 }
