@@ -1,10 +1,10 @@
 
 public class DoolittleProcedure {
 	
-	private double a[][]={{8.0,4.0,-1.0},{-2.0,5.0,1.0},{2.0,-1.0,6.0}};
-	private double b[] ={11.0,4.0,7.0};
-	private double sup[][]= new double[3][3];
-	private double inf[][]= new double[3][3];
+	private double a[][]={{10.0,1.0,2.0,3.0},{1.0,9.0,2.0,3.0},{1.0,1.0,8.0,3.0},{1.0,1.0,2.0,7.0}};
+	private double b[] ={4.0,5.0,7.0,6.0};
+	private double sup[][]= new double[4][4];
+	private double inf[][]= new double[4][4];
 
 	
 	
@@ -73,6 +73,54 @@ public class DoolittleProcedure {
 		
 		return x;
 		
+	}
+
+
+
+	public double[][] getA() {
+		return a;
+	}
+
+
+
+	public void setA(double a[][]) {
+		this.a = a;
+	}
+
+
+
+	public double[] getB() {
+		return b;
+	}
+
+
+
+	public void setB(double b[]) {
+		this.b = b;
+	}
+
+
+
+	public double[][] getSup() {
+		return sup;
+	}
+
+
+
+	public void setSup(double sup[][]) {
+		this.sup = sup;
+	}
+
+
+
+	public double[][] getInf() {
+		return inf;
+	}
+
+
+
+	public void setInf(double inf[][]) {
+		this.inf = inf;
 	}
 
 	
