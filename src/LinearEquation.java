@@ -34,7 +34,7 @@ public class LinearEquation {
 	public LinearFunc solveForX(int x)
 	{
 		ArrayList<Double> solvedForXCoef = new ArrayList<Double>();
-		solvedForXCoef.add(freeTerm);
+		System.out.println(varCoef.size());
 		for(int i = 0; i< varCoef.size();i++)
 		{
 			if(i == x)
@@ -43,9 +43,10 @@ public class LinearEquation {
 			}
 			else
 			{
-				solvedForXCoef.add(-varCoef.get(i));
+				solvedForXCoef.add(-varCoef.get(i)/varCoef.get(x));
 			}
 		}
+		solvedForXCoef.add(freeTerm/varCoef.get(x));
 		return new  LinearFunc(solvedForXCoef,"x"+x);
 	}
 
