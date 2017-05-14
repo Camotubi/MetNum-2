@@ -2,14 +2,12 @@ import java.util.ArrayList;
 
 public class LinearFunc {
 	private ArrayList<Double> coef;
-	private int eqN ;
 	private String name;
 	
 	public LinearFunc( ArrayList<Double> coef, String name)
 	{
 		this.setName(name);
 		this.coef = coef;
-		this.eqN = eqN;
 	}
 	public double evaluate(Double[] x)
 	{

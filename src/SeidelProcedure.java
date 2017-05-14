@@ -69,7 +69,7 @@ public class SeidelProcedure {
 			}
 			iterData[iterData.length-1] = Math.abs((iterData[1]-prevX0)/iterData[1]);
 			procedureTable.add(iterData);
-		}while(procedureTable.get(procedureTable.size()-1)[iterData.length-1]>tolerance);
+		}while(procedureTable.get(procedureTable.size()-1)[iterData.length-1]>tolerance && procedureTable.get(procedureTable.size()-1)[0]<40);
 		
 		return procedureTable;
 	}
