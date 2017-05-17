@@ -120,7 +120,34 @@ public class DoolittleProcedure {
 	public void setInf(Double inf[][]) {
 		this.inf = inf;
 	}
+	public ArrayList<LinearEquation> getEquation() {
+		return Equation;
+	}
+	public void setEquation(ArrayList<LinearEquation> equation) {
+		Equation = equation;
+	}
+	public Double[][] getSystemCoefArray()
+	{
+		Double [][] a = new Double[Equation.size()][Equation.size()];
+		
+		
+		for(int i=0;i<Equation.size();i++)
+		{
+			LinearEquation tmpEqn =  Equation.get(i);
+			a[i]= tmpEqn.getVarCoef().toArray( new Double[tmpEqn.getVarCoef().size()]);
+		}
+		return a;
+	}
+	public Double[] getSytemFreeTermArray()
+	{
+		Double [] b = new Double[Equation.size()];
 
-	
+		for(int i=0;i<Equation.size();i++)
+		{
+			LinearEquation tmpEqn =  Equation.get(i);
+			b[i] =tmpEqn.getFreeTerm();
+		}
+		return b;
+	}
 
 }

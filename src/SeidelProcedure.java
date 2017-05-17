@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class SeidelProcedure {
 	private ArrayList<LinearEquation> Equation = new ArrayList<LinearEquation>();
 	private ArrayList<LinearFunc> Function = new ArrayList<LinearFunc>();
+	private Double[] Solution;
 	//To-do solve for X for each of the euation then save in Function
 	// Iter Function
 	public ArrayList<LinearEquation> getEquation() {
@@ -29,6 +30,7 @@ public class SeidelProcedure {
 	}
 	public ArrayList<Double[]> solveSystem(double tolerance)
 	{
+		Solution = new Double[Equation.size()];
 		solveEquations();
 		ArrayList<Double[]> procedureTable = new ArrayList<Double[]>();
 		Double iterData[] =  new Double[Equation.size()+2];
@@ -69,9 +71,19 @@ public class SeidelProcedure {
 			}
 			iterData[iterData.length-1] = Math.abs((iterData[1]-prevX0)/iterData[1]);
 			procedureTable.add(iterData);
-		}while(procedureTable.get(procedureTable.size()-1)[iterData.length-1]>tolerance && procedureTable.get(procedureTable.size()-1)[0]<40);
+		}while(procedureTable.get(procedureTable.size()-1)[iterData.length-1]>tolerance && procedureTable.get(procedureTable.size()-1)[0]<1000);
 		
+		for(int i =0;i<Solution.length;i++)
+		{
+			Solution[i] =procedureTable.get(procedureTable.size()-1)[i+1];
+		}
 		return procedureTable;
+	}
+	public Double[] getSolution() {
+		return Solution;
+	}
+	public void setSolution(Double[] solution) {
+		Solution = solution;
 	}
 
 }

@@ -8,10 +8,9 @@ public class Main {
 
 	public static void main(String[] args)throws IOException {
 		MenuPrincipal();
-		DoolittleProcedure d = new DoolittleProcedure();
-		int l = Integer.parseInt(JOptionPane.showInputDialog(null, "matris"));
+	//	int l = Integer.parseInt(JOptionPane.showInputDialog(null, "matris"));
 		
-		
+		/*
 	//MenuPrincipal();
 		//BufferedReader r = new BufferedReader( new InputStreamReader(System.in));
 		ArrayList<Double> p = new ArrayList<Double>();
@@ -136,8 +135,8 @@ public class Main {
 			}
 			switch(opcion)
 			{
-			case 1: break;
-			case 2: break;
+			case 1:MetodoDoolittle(); break;
+			case 2:MetodoSeidel(); break;
 			
 			}
 		}while (opcion!=3);
@@ -146,17 +145,106 @@ public class Main {
 	
 	static void MetodoDoolittle()
 	{
-		
+		DoolittleProcedure d = new DoolittleProcedure(equatioInput());
+		double resultado[] =d.solveSystem();
+		int opcion =0;
+		do{
+			opcion=0;
+			try{
+				opcion=Integer.parseInt(JOptionPane.showInputDialog(null, "1. Matriz Principal \n"
+						+ "2. Matriz Superior \n"
+						+ "3. Matriz Inferior \n"
+						+ "4. Resultados \n"
+						+ "0. Menu Principal"));
+			}
+			catch(Exception e)
+			{
+				JOptionPane.showMessageDialog(null, "Error. Introduzca una de las opciones.");
+			}
+			switch(opcion)
+			{
+			case 1:
+				{
+					
+					new matrixInput(d.getSystemCoefArray(),d.getSytemFreeTermArray()).showme();;
+				}
+				break;
+			case 2: 
+				new matrixResult(d.getSup(),0).showme();
+			
+				break;
+			case 3: 
+				new matrixResult(d.getInf(),0).showme();
+				break;
+			case 4:
+			{
+				String resultadoStr = "";
+				for(int i=0;i<resultado.length;i++)
+				{
+					resultadoStr = resultadoStr +"x"+i+": " +resultado[i]+"\n";
+				}
+				JOptionPane.showMessageDialog(null, "Resultado\n"+resultadoStr);
+			}
+				break;
+			
+			
+			}
+		}while (opcion!=0);
 	}
-	static void MetodoSiedel()
+	static void MetodoSeidel()
 	{
+		SeidelProcedure s = new SeidelProcedure();
+		s.setEquation(equatioInput());
+		ArrayList<Double []>resp=s.solveSystem(0.00001);
+		Double[][] procedure = new Double[resp.size()][resp.get(0).length];
+		for(int i = 0; i<resp.size();i++)
+		{
+			procedure[i]=resp.get(i);
+		}
+		
+		int opcion =0;
+		do{
+			opcion=0;
+			try{
+				opcion=Integer.parseInt(JOptionPane.showInputDialog(null, "1. Tabla o cuadro de iteracion \n"
+						+ "2. Resultados del Sistema de Ecuacion Algebraica Lineal \n"
+						+ "0. Menu Principal"));
+			}
+			catch(Exception e)
+			{
+				JOptionPane.showMessageDialog(null, "Error. Introduzca una de las opciones.");
+			}
+			switch(opcion)
+			{
+			case 1:
+				{
+					
+					new matrixResult(procedure,1).showme();;
+				}
+				break;
+			case 2: 
+			{
+				String resultadoStr = "";
+				for(int i=0;i<s.getEquation().size();i++)
+				{
+					resultadoStr = resultadoStr +"x"+i+": " +s.getSolution()[i]+"\n";
+				}
+				JOptionPane.showMessageDialog(null, "Resultado\n"+resultadoStr);
+			}
+				break;
+
+			
+		
+			}
+		}while (opcion!=0);
 		
 	}
-	static void equatioInput()
+	static ArrayList<LinearEquation> equatioInput()
 	{
 		
 		matrixInput frame = new matrixInput(Integer.parseInt(JOptionPane.showInputDialog(null, "¿Cuantas variables por ecuacion tiene su sistema?")));
 		frame.pack();
+		return frame.getEquationData();
 		
 	}
 }
