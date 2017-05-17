@@ -3,18 +3,22 @@ import java.util.ArrayList;
 public class DoolittleProcedure {
 	
 	private ArrayList<LinearEquation> Equation ;
-
+	private Double sup[][];
+	private Double inf[][];
 	
 	public DoolittleProcedure(ArrayList<LinearEquation> eqn)
 	{
+		int matrixSize=eqn.size();
 		Equation = eqn;
+		
+		sup= new Double[matrixSize][matrixSize];
+		inf= new Double[matrixSize][matrixSize];
 	}
 	public double[] solveSystem()
 	{
 		Double [][] a = new Double[Equation.size()][Equation.size()];
 		Double [] b = new Double[Equation.size()];
-		 double sup[][]= new double[b.length][b.length];
-		 double inf[][]= new double[b.length][b.length];
+
 		for(int i=0;i<Equation.size();i++)
 		{
 			LinearEquation tmpEqn =  Equation.get(i);
@@ -90,49 +94,30 @@ public class DoolittleProcedure {
 
 
 
-	public double[][] getA() {
-		return a;
-	}
 
 
 
-	public void setA(double a[][]) {
-		this.a = a;
-	}
 
 
-
-	public double[] getB() {
-		return b;
-	}
-
-
-
-	public void setB(double b[]) {
-		this.b = b;
-	}
-
-
-
-	public double[][] getSup() {
+	public Double[][] getSup() {
 		return sup;
 	}
 
 
 
-	public void setSup(double sup[][]) {
+	public void setSup(Double sup[][]) {
 		this.sup = sup;
 	}
 
 
 
-	public double[][] getInf() {
+	public Double[][] getInf() {
 		return inf;
 	}
 
 
 
-	public void setInf(double inf[][]) {
+	public void setInf(Double inf[][]) {
 		this.inf = inf;
 	}
 
