@@ -12,6 +12,7 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class matrixInput extends JFrame {
@@ -98,18 +99,23 @@ public class matrixInput extends JFrame {
 	public void setModel1(DefaultTableModel model1) {
 		this.model1 = model1;
 	}
-	public Object[] getEquationData()
+	public ArrayList<LinearEquation> getEquationData()
 	{
 		int nRow= model1.getRowCount();
 		int nCol = model1.getColumnCount();
-		Object[] equiationSystemData = new Object[2];
-		for(int r=0;r<nRow,r++)
+	
+		ArrayList<LinearEquation> equationSystem = new ArrayList<LinearEquation>();
+		for(int r=0;r<nRow;r++)
 		{
+			ArrayList<Double> eqnCoef = new ArrayList<Double>();
 			for(int c = 0;c<nCol;c++)
 			{
-				equ
+				eqnCoef.add((Double) model1.getValueAt(r, c));
 			}
+			double freeTerm =(double) model2.getValueAt(r,0);
+			LinearEquation eqnN = new  LinearEquation(eqnCoef,freeTerm);
+			equationSystem.add(eqnN);
 		}
-		return null;
+		return equationSystem;
 	}
 }
