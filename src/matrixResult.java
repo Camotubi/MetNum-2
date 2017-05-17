@@ -8,13 +8,23 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import java.awt.GridLayout;
+import java.awt.ScrollPane;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import net.miginfocom.swing.MigLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormSpecs;
+import com.jgoodies.forms.layout.RowSpec;
 
-public class matrixInput extends JFrame {
+public class matrixResult extends JFrame {
 
 	private JPanel contentPane;
 	private JTable a;
@@ -22,11 +32,13 @@ public class matrixInput extends JFrame {
 	private JButton btnAtras;
 	private DefaultTableModel model1;
 	private DefaultTableModel model2 ;
+	private JScrollPane scrollPane;
+	private JScrollPane scrollPane_1;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -39,20 +51,26 @@ public class matrixInput extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public matrixInput(int i) {
+	public matrixResult(Object[][] i) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 187);
+		setBounds(100, 100, 450, 169);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
-		DefaultTableModel model1 = new DefaultTableModel(i,i) ;
-		DefaultTableModel model2 = new DefaultTableModel(i,1) ;
+		Object[] name = new Object[i[0].length];
+		name[0]="Iteracion";
+		name[name.length-1]="Error";
+		for(int n=1;n<(name.length-2);n++)
+		{
+			name[n]="x"+n;
+		}
+		DefaultTableModel model1 = new DefaultTableModel(i,name) ;
+		DefaultTableModel model2 = new DefaultTableModel(i,name) ;
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
@@ -74,15 +92,26 @@ public class matrixInput extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+	
 		a = new JTable(model1);
-		panel_1.add(a);
+		a.setColumnSelectionAllowed(true);
+		a.setCellSelectionEnabled(true);
+		JScrollPane scrollPane_3 = new JScrollPane(a);
 		
 		JLabel label = new JLabel("=");
-		panel_1.add(label);
+		
+		
 		
 		b = new JTable(model2);
-		panel_1.add(b);
+		b.setCellSelectionEnabled(true);
+		b.setColumnSelectionAllowed(true);
+		JScrollPane scrollPane_2 = new JScrollPane(b);
+		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel_1.add(scrollPane_3);
+		panel_1.add(label);
+		panel_1.add(scrollPane_2);
+		
 	}
 	
 	void	updateTable(double[][] matrix)
@@ -97,19 +126,5 @@ public class matrixInput extends JFrame {
 
 	public void setModel1(DefaultTableModel model1) {
 		this.model1 = model1;
-	}
-	public Object[] getEquationData()
-	{
-		int nRow= model1.getRowCount();
-		int nCol = model1.getColumnCount();
-		Object[] equiationSystemData = new Object[2];
-		for(int r=0;r<nRow,r++)
-		{
-			for(int c = 0;c<nCol;c++)
-			{
-				equ
-			}
-		}
-		return null;
 	}
 }

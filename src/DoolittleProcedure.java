@@ -1,15 +1,28 @@
+import java.util.ArrayList;
 
 public class DoolittleProcedure {
 	
-	private double a[][]={{10.0,1.0,2.0,3.0},{1.0,9.0,2.0,3.0},{1.0,1.0,8.0,3.0},{1.0,1.0,2.0,7.0}};
-	private double b[] ={4.0,5.0,7.0,6.0};
-	private double sup[][]= new double[4][4];
-	private double inf[][]= new double[4][4];
+	private ArrayList<LinearEquation> Equation ;
 
 	
-	
+	public DoolittleProcedure(ArrayList<LinearEquation> eqn)
+	{
+		Equation = eqn;
+	}
 	public double[] solveSystem()
 	{
+		Double [][] a = new Double[Equation.size()][Equation.size()];
+		Double [] b = new Double[Equation.size()];
+		 double sup[][]= new double[b.length][b.length];
+		 double inf[][]= new double[b.length][b.length];
+		for(int i=0;i<Equation.size();i++)
+		{
+			LinearEquation tmpEqn =  Equation.get(i);
+			a[i]= tmpEqn.getVarCoef().toArray( new Double[tmpEqn.getVarCoef().size()]);
+			b[i] =tmpEqn.getFreeTerm();
+		}
+
+		
 		double[] y = new double[b.length];
 		double[] x = new double[b.length];
 		

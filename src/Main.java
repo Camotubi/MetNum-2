@@ -7,9 +7,12 @@ import javax.swing.ImageIcon;
 public class Main {
 
 	public static void main(String[] args)throws IOException {
-
+		MenuPrincipal();
 		DoolittleProcedure d = new DoolittleProcedure();
-	/*//MenuPrincipal();
+		int l = Integer.parseInt(JOptionPane.showInputDialog(null, "matris"));
+		
+		
+	//MenuPrincipal();
 		//BufferedReader r = new BufferedReader( new InputStreamReader(System.in));
 		ArrayList<Double> p = new ArrayList<Double>();
 		double f ;
@@ -51,6 +54,20 @@ public class Main {
 		
 		ArrayList<Double[]> resp = new ArrayList<Double[]>();
 		resp = s.solveSystem(0.001);
+		Double[][] respArr = new Double[resp.size()][resp.get(0).length];
+		for(int i = 0; i<resp.size();i++)
+		{
+			for(int n = 0;n< resp.get(i).length;n++)
+			{
+				respArr[i][n]=resp.get(i)[n];
+			}
+		}
+		matrixResult frame = new matrixResult(respArr);
+		frame.setVisible(true);
+		frame.pack();
+		
+		//frame.updateTable(respArr);
+
 			for(int i = 0; i<resp.size();i++)
 		{
 			for(int n = 0;n< resp.get(i).length;n++)
@@ -59,15 +76,15 @@ public class Main {
 			}
 			System.out.println("");
 		}
-		*/
-		double resp[]= d.solveSystem();
+		
+	/*	double resp[]= d.solveSystem();
 		for(int i = 0; i<resp.length;i++)
 		{
 		
 				System.out.print(resp[i]+"\t");
 		}
 		
-		
+		*/
 		
 	}
 
@@ -124,6 +141,22 @@ public class Main {
 			
 			}
 		}while (opcion!=3);
+		
+	}
+	
+	static void MetodoDoolittle()
+	{
+		
+	}
+	static void MetodoSiedel()
+	{
+		
+	}
+	static void equatioInput()
+	{
+		
+		matrixInput frame = new matrixInput(Integer.parseInt(JOptionPane.showInputDialog(null, "¿Cuantas variables por ecuacion tiene su sistema?")));
+		frame.pack();
 		
 	}
 }
